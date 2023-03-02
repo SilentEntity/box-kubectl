@@ -23,7 +23,7 @@ jobs:
     - name: Build and push the Docker image
       env:
         BOX_VERSION: 1.36.0
-        KUBECTL_VERSION: v1.25.7
+        KUBECTL_VERSION: v1.24.11
       run: |
         curl -LO https://dl.k8s.io/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl 
         docker build . --file Dockerfile --build-arg KUBECTL_VERSION=$KUBECTL_VERSION --build-arg BOX_VERSION=$BOX_VERSION --tag box-kubectl:$KUBECTL_VERSION
