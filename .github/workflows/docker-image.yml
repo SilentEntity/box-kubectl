@@ -19,7 +19,7 @@ jobs:
         DOCKER_USER: ${{Secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{Secrets.DOCKER_PASSWORD}}
       run: |
-       docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+       echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin
     - name: Build and push the Docker image
       env:
         BOX_VERSION: 1.36.0
