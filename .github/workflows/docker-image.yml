@@ -25,6 +25,6 @@ jobs:
         BOX_VERSION: 1.36.0
         KUBECTL_VERSION: v1.26.2
       run: |
-        docker build . --file Dockerfile --tag box-kubectl:$KUBECTL_VERSION
+        docker build . --file Dockerfile --build-arg KUBECTL_VERSION=$KUBECTL_VERSION --build-arg BOX_VERSION=$BOX_VERSION --tag box-kubectl:$KUBECTL_VERSION
         docker tag box-kubectl:$KUBECTL_VERSION silententity/box-kubectl:$KUBECTL_VERSION
         docker push silententity/box-kubectl:$KUBECTL_VERSION
