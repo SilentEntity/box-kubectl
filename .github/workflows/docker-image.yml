@@ -1,0 +1,30 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: docker login
+      env:
+        DOCKER_USER: ${{Secrets.DOCKER_USER}}
+        DOCKER_PASSWORD: ${{Secrets.DOCKER_PASSWORD}}
+      run: |
+       docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Build and push the Docker image
+      env:
+        BOX_VERSION: 1.36.0
+        KUBECTL_VERSION: v1.26.2
+      run: |
+        docker build . --file Dockerfile --tag box-kubectl:$KUBECTL_VERSION
+        docker tag box-kubectl:$KUBECTL_VERSION silententity/box-kubectl:$KUBECTL_VERSION
+        docker push silententity/box-kubectl:$KUBECTL_VERSION
