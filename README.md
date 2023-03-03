@@ -1,8 +1,8 @@
 # box-kubectl
-kubectl with busybox
+kubectl in busybox
 
 Container image is available at : 
-https://hub.docker.com/repository/docker/silententity/box-kubectl
+https://hub.docker.com/r/silententity/box-kubectl
 
 Tag on the container image is in reference to kubectl version.
 
